@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+       
+        <record id="cmms_group_user" model="res.groups">
+            <field name="name">user</field>
+            <field name="comment">normal user</field>
+        </record>
+        <record id="cmms_group_manager" model="res.groups">
+            <field name="name">manager</field>
+            <field name="comment">manager with more access rights</field>
+        </record>
+        <record id="cmms_group_technician" model="res.groups">
+            <field name="name">technician</field>
+            <field name="comment">technician to excute work orders</field>
+        </record>
+    </data>
+</odoo>

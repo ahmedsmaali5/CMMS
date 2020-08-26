@@ -1,0 +1,400 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+        <!-- Equipments-->
+        <record model="ir.ui.view" id="cmms_view_tree_equ">
+            <field name="name">Equipments</field>
+            <field name="model">cmms.equipment</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="type_eq"/>
+                    <field name="local_id"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="view_calls_form_cmms_equ" model="ir.ui.view">
+            <field name="name">Equipments</field>
+            <field name="model">cmms.equipment</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+
+                        <group name="group_top">
+                            <group name="group_left" string="Basic Information">
+                                <field name="name"/>
+                                <field name="type_eq"/>
+                                <field name="local_id"/>
+                            </group>
+                        </group>
+                        <group name="group_down" string="General Properties">
+                            <group name="1">
+                                <field name="line_id"/>
+                                <field name="local_id"/>
+                                <field name="startingdate"/>
+                            </group>
+
+                            <group name="2">
+
+                                <field name="vendor"/>
+                                <field name="trademark"/>
+                                <field name="active"/>
+
+
+                            </group>
+
+
+                        </group>
+                        <group string="Description">
+                            <field name="description"/>
+                        </group>
+
+                        <group name="notebook" string="Additional information">
+
+                            <notebook>
+                                <page string="Usage information">
+                                    <group string="Safety instruction">
+                                        <field name="s_info"/>
+                                    </group>
+
+                                    <group string="Usage instructions">
+                                        <field name="u_ins"/>
+                                    </group>
+
+                                </page>
+                                <page string="Piece of change">
+                                    <field name="cmms_eq_ids"/>
+                                </page>
+                                 <page string="Preventive Maintenance">
+                                <group>
+                                <field name="Technician"/>
+                                
+                                <field name="periodic"/>
+                                    <field name="begin_date"/>
+                                    <field name="interval"/> 
+                                    <field name="end_date"/>
+                                    
+                                    <field name="next_pm"/>
+
+                                    <button string="Compute PM" type="object" name="calcul_Next_PM"/>
+                                </group>
+                                </page>
+                            </notebook>
+                        </group>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+
+        <!-- Production Lines -->
+
+        <record model="ir.ui.view" id="cmms_view_tree_proL">
+            <field name="name">Production Lines</field>
+            <field name="model">cmms.line</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="Location"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="view_calls_form_cmms_pl" model="ir.ui.view">
+            <field name="name">Production Lines</field>
+            <field name="model">cmms.line</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group name="group_top">
+                            <group name="group_left">
+                                <field name="name"/>
+                                <field name="code"/>
+                                <field name="Location"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--intervetion requests -->
+        <record model="ir.ui.view" id="cmms_view_tree_int">
+            <field name="name">Intervention</field>
+            <field name="model">cmms.intervention</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="Sender"/>
+                    <field name="Recipient"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="view_calls_form_cmms_int" model="ir.ui.view">
+            <field name="name">Intervention</field>
+            <field name="model">cmms.intervention</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group name="group_top">
+
+                            <group name="group_left" string="Basic informations">
+                                <field name="name"/>
+                                <field name="Sender"/>
+                                <field name="Recipient"/>
+                                <field name="int_priority" widget="priority"/>
+                                <field name="status"/>
+
+                            </group>
+                            <group name="group_right" string="Basic informations 2">
+                                <field name="machine"/>
+
+                                <field name="sc_date"/>
+                                <field name="type_inter"/>
+
+                            </group>
+
+                        </group>
+                        <group name="group_down">
+                            <notebook>
+                                <page string="Motif intervention">
+                                    <group>
+                                        <field name="motif"/>
+                                    </group>
+
+                                </page>
+                                <page string="Observation">
+                                    <group>
+                                        <field name="obsv"/>
+                                    </group>
+                                </page>
+                            </notebook>
+
+                        </group>
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- cmms.failure -->
+        <!--failure tree -->
+        <record model="ir.ui.view" id="cmms_view_tree_f">
+            <field name="name">Failure</field>
+            <field name="model">cmms.failure</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="desc"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_calls_form_cmms_f" model="ir.ui.view">
+            <field name="name">Failure</field>
+            <field name="model">cmms.failure</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group string="Failure Type">
+                            <field name="name"/>
+                            <field name="desc"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!--Work Orders tree -->
+        <record model="ir.ui.view" id="cmms_view_tree_wr">
+            <field name="name">Work Orders</field>
+            <field name="model">cmms.wr</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+
+                    <field name="Technician"/>
+
+                    <field name="Order_by"/>
+
+                </tree>
+            </field>
+        </record>
+        <!--Task tree -->
+        <record model="ir.ui.view" id="cmms_view_tree_task">
+            <field name="name">Task</field>
+            <field name="model">cmms.task</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="desc"/>
+                    <field name="done"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_calls_form_cmms_task" model="ir.ui.view">
+            <field name="name">Task</field>
+            <field name="model">cmms.task</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="desc"/>
+                            <field name="done"/>
+                        </group>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+
+        <record id="view_calls_form_cmms_wr" model="ir.ui.view">
+            <field name="name">Work Orders</field>
+            <field name="model">cmms.wr</field>
+            <field name="arch" type="xml">
+                <form>
+
+                    <sheet>
+                        <header>
+                            <button string="Set to concept" type="object" name="concept_progressbar"
+                                    attrs="{'invisible': [('state', '=', 'concept')]}"/>
+                            <!--The oe_highlight class gives the button a red color when it is saved.
+                            It is usually used to indicate the expected behaviour. -->
+                            <button string="Set to started" type="object" name="started_progressbar"
+                                    class="oe_highlight" attrs="{'invisible': [('state','!=','concept')]}"/>
+                            <button string="In progress" type="object" name="progress_progressbar"
+                                    attrs="{'invisible': [('state','=','progress')]}"/>
+                            <button string="Done" type="object" name="done_progressbar"
+                                    attrs="{'invisible': [('state','=','finished')]}"/>
+                            <!--This will create the statusbar, thanks to the widget. -->
+                            <field name="state" widget="statusbar"/>
+
+                        </header>
+
+                        <group name="0" string=" Work Orders">
+                            <group name="1">
+                                <field name="name"/>
+
+                                <field name="Order_by"/>
+                                <field name="Technician"/>
+
+                            </group>
+                            <group name="2">
+                                <field name="machine"/>
+                                <field name="failure_type"/>
+
+                                <field name="int_priority"/>
+                                <field name="sc_date"/>
+                                <field name="sp_date"/>
+                                <field name="uptime"/>
+
+
+                            </group>
+                        </group>
+
+                        <group string="Based on">
+                            <group name="3">
+                                <field name="Reference_to"/>
+                                <field name="s_INT" attrs="{'invisible':[('Reference_to','!=','r1')]}"/>
+                                <field name="task" attrs="{'invisible':[('Reference_to','!=','r2')]}"/>
+
+                            </group>
+
+                        </group>
+                        <notebook>
+                            <page string="Notes">
+                                <group>
+                                    <field name="notes"/>
+                                </group>
+                            </page>
+                           
+
+                        </notebook>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+
+        <record id="new_calendar" model="ir.ui.view">
+            <field name="name">Calendar</field>
+            <field name="model">cmms.wr</field>
+            <field name="arch" type="xml">
+                <calendar string="x" color="Technician" date_start="sc_date" date_stop="sp_date">
+                    <field name="name"/>
+                </calendar>
+            </field>
+        </record>
+
+        <record id="action_records_form_f" model="ir.actions.act_window">
+            <field name="name">Failure</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cmms.failure</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_records_form_int" model="ir.actions.act_window">
+            <field name="name">Intervention</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cmms.intervention</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_records_form_pl" model="ir.actions.act_window">
+            <field name="name">Production Lines</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cmms.line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_records_form_eq" model="ir.actions.act_window">
+            <field name="name">Equipments</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cmms.equipment</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_records_form_task" model="ir.actions.act_window">
+            <field name="name">Task</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cmms.task</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <record id="action_records_form_wr" model="ir.actions.act_window">
+            <field name="name">Work Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cmms.wr</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar</field>
+        </record>
+
+        <menuitem id="CMMS" name="CMMS" sequence="22"/>
+        <menuitem action="action_records_form_int" id="sub_menu_int" parent="CMMS" sequence="9"/>
+        <menuitem action="action_records_form_eq" id="sub_menu_eq" parent="CMMS" sequence="10"/>
+        <menuitem action="action_records_form_pl" id="sub_menu_pl" parent="CMMS" sequence="14"/>
+        <menuitem action="action_records_form_f" id="sub_menu_f" parent="CMMS" sequence="13"/>
+        <menuitem action="action_records_form_wr" id="sub_menu_wr" parent="CMMS" sequence="8"/>
+        <menuitem action="action_records_form_task" id="sub_menu_task" parent="CMMS" sequence="12"/>
+
+
+    </data>
+</odoo>
